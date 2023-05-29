@@ -1,3 +1,5 @@
+import Feed from '@components/Feed'
+
 export default function Home() {
   return (
     <section className="w-full flex-center flex-col">
@@ -6,7 +8,7 @@ export default function Home() {
         <br className="" />
         <span className=" orange_gradient text-center mt-5 ">Collection of songs/albums</span>
       </h1>
-      
+      <Feed />
     </section>
   )
 }
