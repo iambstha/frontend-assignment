@@ -57,8 +57,8 @@ const Nav = () => {
           <>
             {providers &&
               Object.values(providers).map((provider) => (
-                <div>
-                  <Link href='/search' className='black_btn'>
+                <div className="flex">
+                  <Link href='/search' className='black_btn mr-5 '>
                     Search
                   </Link>
                   <button
@@ -123,25 +123,24 @@ const Nav = () => {
           <>
             {providers &&
               Object.values(providers).map((provider) => (
-                <div>
-                  
-                <Link
-                  href='/search'
-                  className='dropdown_link'
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  Search
-                </Link>
-                <button
-                  type='button'
-                  key={provider.name}
-                  onClick={() => {
-                    signIn(provider.id);
-                  }}
-                  className='black_btn'
-                >
-                  Sign in
-                </button>
+                <div className="flex">
+                  {/* <Link
+                    href='/search'
+                    className='dropdown_link'
+                    onClick={() => setToggleDropdown(false)}
+                  >
+                    Search
+                  </Link> */}
+                  <button
+                    type='button'
+                    key={provider.name}
+                    onClick={() => {
+                      signIn(provider.id);
+                    }}
+                    className='black_btn'
+                  >
+                    Sign in
+                  </button>
                 </div>
               ))}
           </>
