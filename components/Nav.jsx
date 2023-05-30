@@ -57,13 +57,13 @@ const Nav = () => {
           <>
             {providers &&
               Object.values(providers).map((provider) => (
-                <div className="flex">
+                <div className="flex"
+                key={provider.name}>
                   <Link href='/search' className='black_btn mr-5 '>
                     Search
                   </Link>
                   <button
                     type='button'
-                    key={provider.name}
                     onClick={() => {
                       signIn(provider.id);
                     }}
@@ -123,7 +123,8 @@ const Nav = () => {
           <>
             {providers &&
               Object.values(providers).map((provider) => (
-                <div className="flex">
+                <div className="flex"
+                key={provider.name}>
                   {/* <Link
                     href='/search'
                     className='dropdown_link'
@@ -133,7 +134,6 @@ const Nav = () => {
                   </Link> */}
                   <button
                     type='button'
-                    key={provider.name}
                     onClick={() => {
                       signIn(provider.id);
                     }}
