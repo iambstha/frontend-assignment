@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'
 
 const Feed = () => {
     const [data, setData] = useState(null);
@@ -38,7 +39,7 @@ const Feed = () => {
                     {data.map((item) => (
                         <li key={item.added_at} className='home-box w-1/5 h-80 m-2'>
                             <a href='#' className=' flex flex-col border-2 border-gray-700 shadow-sm shadow-gray-400 p-2 cursor-pointer h-full w-full ' >
-                            <img src={item.track && item.track.album ? item.track.album.images[0].url : ''} alt="image" className='contain-image ' />
+                            <Image src={item.track && item.track.album ? item.track.album.images[0].url : ''} alt="image" className='contain-image ' />
                                 <span className=' text-2xl uppercase flex flex-nowrap '>{item.track && item.track.album ? item.track.album.name : 'Unknown'}</span>
                                 <span className=' capitalize ' >{item.track && item.track.album ? item.track.album.album_type : 'Unknown'}</span>
                                 <br />
