@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image'
 
 const Feed = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const [keyword, setKeyword] = useState('');
 
     useEffect(() => {
@@ -31,20 +31,20 @@ const Feed = () => {
         }
     };
 
-    const filteredList = data !== null ? data.filter(item => 
+    const filteredList = (data !== null ? data.filter(item => 
         (item.track && item.track.album ? item.track.album.name : '').toLowerCase().includes(keyword.toLowerCase())
-    ) : ''
+    ) : '')
 
     console.log("filterd: " + filteredList)
 
     return (
-        <div>
-            <input type="text" value={keyword} placeholder='Search your favourite music' onChange={e => setKeyword(e.target.value)} />
+        <div className='flex flex-center flex-col w-full bg-white'>
+            <input type="text" value={keyword} placeholder='Search your favourite music' onChange={e => setKeyword(e.target.value)} className=' border-2 border-gray-600 p-2 mt-4 w-full outline-none ' />
             {data !== null ? (
-                <ul className=' flex flex-wrap w-full mt-5 flex-between ' >
+                <ul className=' flex flex-wrap w-full mt-5 flex-center ' >
                     {filteredList.map((item) => (
-                        <li key={item.added_at} className='home-box w-1/5 h-80 m-2'>
-                            <a href='#' className=' flex flex-col border-2 border-gray-700 shadow-sm shadow-gray-400 p-2 cursor-pointer h-full w-full ' >
+                        <li key={item.added_at} className=' home-box w-1/2 md:w-1/4 lg:w-1/5 h-80 m-2 bg-gray-100 '>
+                            <a href='#' className=' flex flex-col border-2 border-transparent p-4 cursor-pointer h-full w-full ' >
                             <Image src={item.track && item.track.album ? item.track.album.images[0].url : ''} alt="image" className='contain-image ' width={210} height={250} />
                                 <span className=' text-2xl uppercase flex flex-nowrap '>{item.track && item.track.album ? item.track.album.name : 'Unknown'}</span>
                                 <span className=' capitalize ' >{item.track && item.track.album ? item.track.album.album_type : 'Unknown'}</span>
@@ -54,7 +54,7 @@ const Feed = () => {
                     ))}
                 </ul>
             ) : (
-                <p>Loading...</p>
+                <p className=' p-2 m-2 text-orange-700 text-center '>Loading...</p>
             )}
         </div>
     );
