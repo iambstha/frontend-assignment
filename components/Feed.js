@@ -38,7 +38,7 @@ const Feed = () => {
     console.log("filterd: " + filteredList)
 
     return (
-        <div className='flex flex-center flex-col w-full bg-white'>
+        <div className='flex flex-center flex-col w-full bg-white mt-4'>
             <input type="text" value={keyword} placeholder='Search your favourite music' onChange={e => setKeyword(e.target.value)} className=' border-2 border-gray-600 p-2 mt-4 w-full outline-none ' />
             {data !== null ? (
                 <ul className=' flex flex-wrap w-full mt-5 flex-center ' >
