@@ -4,6 +4,7 @@ import Image from 'next/image'
 
 const Feed = () => {
     const [data, setData] = useState(null);
+    const [keyword, setKeyword] = useState(null);
 
     useEffect(() => {
         fetchData();
@@ -30,10 +31,9 @@ const Feed = () => {
         }
     };
 
-    console.log(data);
-
     return (
         <div>
+            <input type="text" placeholder='Search your favourite music' onChange={e => setKeyword(e.target.value)} />
             {data !== null ? (
                 <ul className=' flex flex-wrap w-full mt-5 flex-between ' >
                     {data.map((item) => (
