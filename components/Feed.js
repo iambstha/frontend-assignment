@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image'
 
 const Feed = () => {
-    const [data, setData] = useState(null);
-    const [keyword, setKeyword] = useState(null);
+    const [data, setData] = useState([]);
+    const [keyword, setKeyword] = useState('');
 
     useEffect(() => {
         fetchData();
@@ -31,12 +31,18 @@ const Feed = () => {
         }
     };
 
+    const filteredList = data !== null ? data.filter(item => 
+        (item.track && item.track.album ? item.track.album.name : '').toLowerCase().includes(keyword.toLowerCase())
+    ) : ''
+
+    console.log("filterd: " + filteredList)
+
     return (
         <div>
-            <input type="text" placeholder='Search your favourite music' onChange={e => setKeyword(e.target.value)} />
+            <input type="text" value={keyword} placeholder='Search your favourite music' onChange={e => setKeyword(e.target.value)} />
             {data !== null ? (
                 <ul className=' flex flex-wrap w-full mt-5 flex-between ' >
-                    {data.map((item) => (
+                    {filteredList.map((item) => (
                         <li key={item.added_at} className='home-box w-1/5 h-80 m-2'>
                             <a href='#' className=' flex flex-col border-2 border-gray-700 shadow-sm shadow-gray-400 p-2 cursor-pointer h-full w-full ' >
                             <Image src={item.track && item.track.album ? item.track.album.images[0].url : ''} alt="image" className='contain-image ' width={210} height={250} />
